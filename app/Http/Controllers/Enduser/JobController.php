@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Controllers\Enduser;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\JobPost;
+use App\Models\Company;
+use App\Models\JobCategory;
+use App\Models\Applicant;
+use App\Models\ApplicantCompany;
+
+class JobController extends Controller
+{
+    public function details(Request $request){
+        $post = JobPost::find($request->id);
+        $company = Company::find($post->company_id);
+        $category = JobCategory::find($post->job_category_id);
+        
+        return view('enduser.job_detail', ['post' => $post,
+                                           'company' => $company,
+                                           'category' => $category]);
+    }
+
+    public function applyJob(Request $request){
+        $post = JobPost::find($request->id);
+        $company = Company::find($post->company_id);
+        $category = JobCategory::find($post->job_category_id);
+
+        return view('enduser.applyjob', ['post' => $post,
+                                         'category' => $category,
+                                         'company' => $company]);
+    }
+
+    public function postJob(Request $request){
+        $exist_applicant = Applicant::where('email', $request->email)->first();
+        $company = Company::where('name', $request->company)->first();
+        $category = JobCategory::where('name', $request->category)->first();
+        if($exist_applicant){
+            ApplicantCompany::create([
+                'applicant_id' => $exist_applicant->id,
+                'company_id' => $company->id,
+            ]);
+        }else{
+            $photo = $request->file('cv');
+            $destinationPath = 'img/cv/';
+            $profileImage = date('YmdHis') . "." . $photo->getClientOriginalExtension();
+            $photo->move($destinationPath, $profileImage);
+
+            $applicant = Applicant::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'resume' => asset('img/cv/' . $profileImage),
+            ]);
+
+            ApplicantCompany::create([
+                'applicant_id' => $applicant->id,
+                'company_id' => $company->id,
+            ]);
+        }
+        
+        return redirect()->route('enduser.home');
+    }
+
+    public function jobList(){
+        return view('enduser.jobList');
+    }
+}
