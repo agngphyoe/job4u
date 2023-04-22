@@ -31,7 +31,7 @@
                     @php
                         $i = 1;
                     @endphp
-                    @foreach ($applicants as $applicants)
+                    @foreach ($applicants as $applicant)
                     <tr class="text-center">
                         <td>{{ $i++  }}.</td>
                         <td>{{ $applicant->name }}</td>
