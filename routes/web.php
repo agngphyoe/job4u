@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\JobPostController;
 use App\Http\Controllers\Admin\ApplicantController;
 use App\Http\Controllers\Enduser\IndexController;
 use App\Http\Controllers\Enduser\JobController;
+use App\Http\Controllers\Enduser\ApplicantAuthController;
 
 
 /*
@@ -24,13 +25,20 @@ use App\Http\Controllers\Enduser\JobController;
 // Route::get('/', function(){
 //     return view ('enduser.index');
 // });
-
+Route::get('/enduser/register', [ApplicantAuthController::class, 'showRegisterForm'])->name('enduser.register');
+Route::post('/enduser/register/post', [ApplicantAuthController::class, 'register'])->name('enduser.register.post');
+Route::get('/enduser/login', [ApplicantAuthController::class, 'showLoginForm'])->name('enduser.login');
+Route::post('/enduser/login/post', [ApplicantAuthController::class, 'login'])->name('enduser.login.post');
 Route::get('/', [IndexController::class, 'index'])->name('enduser.home');
 Route::get('job-details', [JobController::class, 'details'])->name('job.details');
-Route::get('apply-job', [JobController::class, 'applyJob'])->name('job.apply');
-Route::post('post-job', [JobController::class, 'postJob'])->name('job.post');
-Route::get('job-list', [JobController::class, 'jobList'])->name('job.list');
 
+
+//Admin Home page after login
+Route::group(['middleware'=>'applicant'], function() {
+    Route::get('apply-job', [JobController::class, 'applyJob'])->name('job.apply');
+    Route::post('post-job', [JobController::class, 'postJob'])->name('job.post');
+    Route::get('job-list', [JobController::class, 'jobList'])->name('job.list');
+});
 
 Auth::routes();
 
