@@ -3,6 +3,11 @@
 @section('contents')
 <main>
 
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
     <!-- slider Area Start-->
     <div class="slider-area ">
         <!-- Mobile Menu -->
@@ -73,30 +78,16 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="browse-btn2 text-center mt-50">
-                        <a href="" class="border-btn2">Browse All Sectors</a>
+                        <a href="{{ route('enduser.jobByCategories') }}" class="border-btn2">Browse All Sectors</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Our Services End -->
-    <!-- Online CV Area Start -->
-     <div class="online-cv cv-bg section-overly pt-90 pb-120"  data-background="{{ asset('assets2/img/gallery/cv_bg.jpg') }}">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
-                    <div class="cv-caption text-center">
-                        {{-- <p class="pera1">FEATURED TOURS Packages</p> --}}
-                        <p class="pera2"> Make a Difference for Your Life!</p>
-                        <a href="" class="border-btn2 border-btn4">Upload your cv</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Online CV Area End-->
+    
     <!-- Featured_job_start -->
-    <section class="featured-job-area feature-padding">
+    <section class="">
         <div class="container">
             <!-- Section Tittle -->
             <div class="row">

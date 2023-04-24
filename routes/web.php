@@ -34,10 +34,8 @@ Route::get('/alljobs', [JobController::class, 'allJobs'])->name('enduser.allJobs
 Route::get('/job-categories',[JobController::class, 'jobByCategories'])->name('enduser.jobByCategories');
 Route::get('/companies',[JobController::class, 'allCompanies'])->name('enduser.companies');
 
-Route::get('apply-job', [JobController::class, 'applyJob'])->name('job.apply');
 Route::post('post-job', [JobController::class, 'postJob'])->name('job.post');
 Route::get('job-list', [JobController::class, 'jobList'])->name('job.list');
-
 Route::get('job-details', [JobController::class, 'details'])->name('job.details');
 
 
@@ -46,6 +44,7 @@ Route::group(['middleware'=>'applicant'], function() {
     Route::get('/me',[ApplicantAuthController::class, 'me'])->name('enduser.me');
     Route::get('/edit-profile', [ApplicantAuthController::class, 'editProfile'])->name('enduser.editProfile');
     Route::post('/update-profile', [ApplicantAuthController::class, 'updateProfile'])->name('enduser.updateProfile');
+    Route::get('apply-job', [JobController::class, 'applyJob'])->name('job.apply');
 });
 
 Auth::routes();

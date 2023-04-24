@@ -27,9 +27,12 @@ class JobController extends Controller
         $company = Company::find($post->company_id);
         $category = JobCategory::find($post->job_category_id);
 
-        return view('enduser.applyjob', ['post' => $post,
-                                         'category' => $category,
-                                         'company' => $company]);
+        ApplicantCompany::create([
+            'applicant_id' => $applicant->id,
+            'company_id' => $company->id,
+        ]);
+
+        return redirect()->back()->with('success', 'You Applied Job Successfully');
     }
 
     public function postJob(Request $request){
