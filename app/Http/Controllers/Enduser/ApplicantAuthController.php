@@ -65,4 +65,46 @@ class ApplicantAuthController extends Controller
 
         return redirect()->route('enduser.home');
     }
+
+    public function me(){
+        $user = auth::guard('applicant')->user();
+
+        return view('enduser.profile', ['user' => $user]);
+    }
+
+    public function editProfile(){
+        $user = auth::guard('applicant')->user();
+
+        return view('enduser.editProfile', ['user' => $user]);
+    }
+
+    public function updateProfile(Request $request){
+        $user = Applicant::find($request->id);
+        
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->save();
+
+        return redirect()->route('enduser.me');
+
+        if($request->password){
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            return redirect()->route('enduser.me');
+        }
+        if($request->file('resume')){
+            $resume = $request->file('resume');
+            $destinationPath = 'img/resumes';
+            $resumePath = date('YmdHis') . "." . $resume->getClientOriginalExtension();
+            $resume->move($destinationPath, $resumePath);
+
+            $user->resume = $resumePath;
+            $usder->save();
+
+            return redirect()->route('enduser.me');
+        }
+    }
 }

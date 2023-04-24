@@ -17,12 +17,12 @@
                         </div>
                     </div>
                     <!-- Search Box -->
-                    {{-- <div class="row">
+                    <div class="row">
                         <div class="col-xl-8">
                             <!-- form -->
                             <form action="#" class="search-box">
                                 <div class="input-form">
-                                    <input type="text" placeholder="Job Tittle or keyword">
+                                    <input type="text" placeholder="Job Title or keyword">
                                 </div>
                                 <div class="select-form">
                                     <div class="select-itms">
@@ -39,7 +39,7 @@
                                 </div>	
                             </form>	
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>

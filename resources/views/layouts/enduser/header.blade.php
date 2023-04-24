@@ -31,7 +31,7 @@
                                         {{ Auth::guard('applicant')->user()->name }}
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <a class="dropdown-item" href="#">Profile</a>
+                                      <a class="dropdown-item" href="{{ route('enduser.me') }}">Profile</a>
                                       <a type="button" href="javascript::void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                             class="dropdown-item">
                                             Logout
@@ -40,7 +40,7 @@
                                         @csrf
                                     </form>
                                     </div>
-                                  </div>
+                                </div>
                                 @endauth
                                 @guest('applicant')
                                     <a href="{{ route('enduser.register') }}" class="btn head-btn1">Register</a>
