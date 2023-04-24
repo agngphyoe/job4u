@@ -66,4 +66,29 @@ class JobController extends Controller
     public function jobList(){
         return view('enduser.jobList');
     }
+    
+    public function allJobs(Request $request){
+        if($request->category_id){
+            $jobs = JobPost::where('job_category_id', $request->category_id)->get();
+            return view('enduser.allJobs', ['jobs' => $jobs]);
+        }elseif($request->company_id){
+            $jobs = JobPost::where('company_id', $request->company_id)->get();
+            return view('enduser.allJobs', ['jobs' => $jobs]);
+        }else{
+            $jobs = JobPost::orderBy('id', 'desc')->get();
+            return view('enduser.allJobs', ['jobs' => $jobs]);
+        }       
+    }
+
+    public function jobByCategories(){
+        $categories = JobCategory::all();
+
+        return view ('enduser.JobCategories', ['categories' => $categories]);
+    }
+
+    public function allCompanies(){
+        $companies = Company::all();
+
+        return view('enduser.companies', ['companies' => $companies]);
+    }
 }

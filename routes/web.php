@@ -30,14 +30,18 @@ Route::post('/enduser/register/post', [ApplicantAuthController::class, 'register
 Route::get('/enduser/login', [ApplicantAuthController::class, 'showLoginForm'])->name('enduser.login');
 Route::post('/enduser/login/post', [ApplicantAuthController::class, 'login'])->name('enduser.login.post');
 Route::get('/', [IndexController::class, 'index'])->name('enduser.home');
+Route::get('/alljobs', [JobController::class, 'allJobs'])->name('enduser.allJobs');
+Route::get('/job-categories',[JobController::class, 'jobByCategories'])->name('enduser.jobByCategories');
+Route::get('/companies',[JobController::class, 'allCompanies'])->name('enduser.companies');
+Route::get('apply-job', [JobController::class, 'applyJob'])->name('job.apply');
+Route::post('post-job', [JobController::class, 'postJob'])->name('job.post');
+Route::get('job-list', [JobController::class, 'jobList'])->name('job.list');
+
 Route::get('job-details', [JobController::class, 'details'])->name('job.details');
 
 
 //Admin Home page after login
 Route::group(['middleware'=>'applicant'], function() {
-    Route::get('apply-job', [JobController::class, 'applyJob'])->name('job.apply');
-    Route::post('post-job', [JobController::class, 'postJob'])->name('job.post');
-    Route::get('job-list', [JobController::class, 'jobList'])->name('job.list');
 });
 
 Auth::routes();
