@@ -94,4 +94,12 @@ class JobController extends Controller
 
         return view('enduser.companies', ['companies' => $companies]);
     }
+
+    public function searchJobs(Request $request){
+        $search = $request->query('search');
+        $jobs = JobPost::where('title', 'like', '%' . $search . '%')
+                        ->get();
+
+        return view('enduser.allJobs', ['jobs' => $jobs]);                        
+    }
 }

@@ -31,6 +31,7 @@ Route::get('/enduser/login', [ApplicantAuthController::class, 'showLoginForm'])-
 Route::post('/enduser/login/post', [ApplicantAuthController::class, 'login'])->name('enduser.login.post');
 Route::get('/', [IndexController::class, 'index'])->name('enduser.home');
 Route::get('/alljobs', [JobController::class, 'allJobs'])->name('enduser.allJobs');
+Route::get('/search', [JobController::class, 'searchJobs'])->name('enduser.searchJobs');
 Route::get('/job-categories',[JobController::class, 'jobByCategories'])->name('enduser.jobByCategories');
 Route::get('/companies',[JobController::class, 'allCompanies'])->name('enduser.companies');
 
