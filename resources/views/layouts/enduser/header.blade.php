@@ -7,7 +7,7 @@
                      <div class="col-lg-3 col-md-2">
                          <!-- Logo -->
                          <div class="logo">
-                             <a href="index.html"><img src="{{ asset('assets2/img/logo/logo.png') }}" alt=""></a>
+                             <a href="{{ route('enduser.home') }}"><img src="{{ asset('assets2/img/logo.jpg') }}" class="img-fluid" width="150px" alt=""></a>
                          </div>  
                      </div>
                      <div class="col-lg-9 col-md-9">
