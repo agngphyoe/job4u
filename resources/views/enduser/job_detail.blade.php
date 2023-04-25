@@ -2,7 +2,11 @@
 @section('title', 'Job Details')
 @section('contents')
 <main>
-
+    @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}!!!
+        </div>
+    @endif
     <!-- Hero Area Start-->
     <div class="slider-area ">
     <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('assets2/img/hero/about.jpg') }}">

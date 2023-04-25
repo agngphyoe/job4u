@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\JobCategory;
 use App\Models\Applicant;
 use App\Models\ApplicantCompany;
+use Auth;
 
 class JobController extends Controller
 {
@@ -28,7 +29,7 @@ class JobController extends Controller
         $category = JobCategory::find($post->job_category_id);
 
         ApplicantCompany::create([
-            'applicant_id' => $applicant->id,
+            'applicant_id' => auth::guard('applicant')->user()->id,
             'company_id' => $company->id,
         ]);
 
