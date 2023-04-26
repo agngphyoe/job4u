@@ -73,7 +73,7 @@
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                     <div class="single-services text-center mb-30">
                         <div class="services-cap">
-                           <h5><a href="">{{ $category->name }}</a></h5>
+                           <h5><a href="{{ route('enduser.allJobs', ['category_id' => $category->id]) }}">{{ $category->name }}</a></h5>
                         </div>
                     </div>
                 </div>
