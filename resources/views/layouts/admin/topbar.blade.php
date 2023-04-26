@@ -1,6 +1,7 @@
 <div class="app-header header-shadow">
     <div class="app-header__logo">
-        <div class="logo-src"></div>
+        {{-- <div class="logo-src"></div> --}}
+        <div><img src="{{ asset('assets2/img/logo.jpg') }}" class="img-fluid ml-5" width="80px" alt=""></div>
         <div class="header__pane ml-auto">
             <div>
                 <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
@@ -193,15 +194,15 @@
                                                 <li class="nav-item-header nav-item">Activity
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a href="javascript:void(0);" class="nav-link">Recover Password
+                                                    <a href="{{ route('profile.changePassword') }}" class="nav-link">Change Password
                                                     </a>
                                                 </li>
-                                                <li class="nav-item-header nav-item">My Account
+                                                {{-- <li class="nav-item-header nav-item">My Account
                                                 </li>
                                                 <li class="nav-item">
                                                     <a href="javascript:void(0);" class="nav-link">Settings
                                                     </a>
-                                                </li>
+                                                </li> --}}
                                                 
                                             </ul>
                                         </div>

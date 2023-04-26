@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\ApplicantController;
 use App\Http\Controllers\Enduser\IndexController;
 use App\Http\Controllers\Enduser\JobController;
 use App\Http\Controllers\Enduser\ApplicantAuthController;
-
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +98,12 @@ Route::middleware(['auth'])->group(function (){
         //applicants
         Route::prefix('applicants')->controller(ApplicantController::class)->group(function(){
             Route::get('/', 'index')->name('applicants.index');
+        });
+
+        //profile
+        Route::prefix('profile')->controller(ProfileController::class)->group(function(){
+            Route::get('changePassword', 'changePassword')->name('profile.changePassword');
+            Route::post('updatePassword', 'updatePassword')->name('profile.updatePassword');
         });
     });
     

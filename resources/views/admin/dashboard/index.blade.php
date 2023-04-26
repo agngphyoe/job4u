@@ -1,6 +1,15 @@
 @extends('layouts.admin.app')
 @section('title', 'Dashboard')
 @section('contents')
+@if(session()->has('success'))
+    <div class="alert alert-success" style="color: green">
+        {{ session()->get('success') }}
+    </div>
+@else
+    <div class="alert alert-error" style="color: red">
+        {{ session()->get('error') }}
+    </div>
+@endif
 <div class="app-main__inner">
     <div class="app-page-title">
         <div class="page-title-wrapper">
