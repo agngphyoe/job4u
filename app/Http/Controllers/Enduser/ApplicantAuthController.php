@@ -49,6 +49,7 @@ class ApplicantAuthController extends Controller
     }
 
     public function register(Request $request){
+        
         $resume = $request->file('resume');
         $destinationPath = 'img/resumes';
         $resumePath = date('YmdHis') . "." . $resume->getClientOriginalExtension();
@@ -60,7 +61,7 @@ class ApplicantAuthController extends Controller
             'password' => Hash::make($request->password),
             'address' => $request->address,
             'resume' => $resumePath,
-            'phone' => $request->phone,[]
+            'phone' => $request->phone,
         ]);
 
         return redirect()->route('enduser.home');

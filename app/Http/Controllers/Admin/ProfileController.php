@@ -19,7 +19,6 @@ class ProfileController extends Controller
         if($user->password != Hash::make($request->old_password)){
             return redirect()->route('dashboard')->with('error', 'Your old Password is incorrect');
         }else{
-            dd('lee');
             $user->password == Hash::make($request->new_password);
             $user->save();
             
